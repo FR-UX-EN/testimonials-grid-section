@@ -1,0 +1,210 @@
+@use 'reset.scss';
+
+$mobile-width: 375px;
+$desktop-width: 1440px;
+
+// Primary Colors
+$purple-50: hsl(260, 100%, 95%);
+$purple-300: hsl(264, 82%, 80%);
+$purple-500: hsl(263, 55%, 52%);
+
+// Neutral Colors
+$white: hsl(0, 0%, 100%);
+$grey-100: hsl(214, 17%, 92%);
+$grey-200: hsl(0, 0%, 81%);
+$grey-400: hsl(224, 10%, 45%);
+$grey-500: hsl(217, 19%, 35%);
+$dark-blue: hsl(219, 29%, 14%);
+$black: hsl(0, 0%, 7%);
+
+$base-font-size: 13px;
+$font-family: 'Barlow Semi Condensed', sans-serif;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+$breakpoint-mobile: $mobile-width;
+$breakpoint-desktop: $desktop-width;
+
+@function rem($px) {
+  @return calc($px / $base-font-size * 1rem);
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
+  background-color: $grey-100;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-block-size: 100vh;
+  padding: 1rem;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  grid-template-columns: rem(300px);
+  gap: 3rem;
+  min-inline-size: rem(375px);
+  max-inline-size: rem(1440px);
+  justify-content: center;
+
+  .testimonial {
+    padding: 2.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 20px 20px 20px 10px rgba($grey-500, 0.3);
+
+    &-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+
+      img {
+        border-radius: 50%;
+        inline-size: rem(36px);
+        block-size: rem(36px);
+      }
+
+      .testimonial-author {
+        display: flex;
+        flex-direction: column;
+
+        p {
+          margin: 0;
+        }
+
+        .testimonial-name {
+          font-size: rem(13px);
+          font-weight: $font-weight-semibold;
+        }
+
+        .testimonial-status {
+          font-size: rem(13px);
+          font-weight: $font-weight-medium;
+        }
+      }
+    }
+
+    &-title {
+      font-size: rem(19px);
+      font-weight: $font-weight-semibold;
+    }
+
+    &-quote {
+      font-size: rem(13px);
+      font-weight: $font-weight-medium;
+      line-height: 1.5;
+    }
+  }
+
+  .daniel {
+    background-color: $purple-500;
+    color: $white;
+
+    img {
+      border: 2px solid $purple-300;
+    }
+
+    .testimonial-quote {
+      color: $purple-300;
+    }
+  }
+
+  .jonathan {
+    background-color: $grey-500;
+    color: $white;
+
+    .testimonial-status {
+      color: $grey-200;
+    }
+
+    .testimonial-quote {
+      color: $grey-200;
+    }
+  }
+
+  .jeanette {
+    background-color: $white;
+    color: $grey-500;
+
+    .testimonial-status {
+      color: $grey-400;
+    }
+
+    .testimonial-quote {
+      color: $grey-400;
+    }
+  }
+
+  .patrick {
+    background-color: $dark-blue;
+    color: $grey-200;
+
+    .testimonial-status {
+      color: $grey-200;
+    }
+
+    .testimonial-quote {
+      color: $grey-400;
+    }
+  }
+
+  .kira {
+    background-color: $white;
+    color: $grey-500;
+
+    .testimonial-status {
+      color: $grey-200;
+    }
+
+    .testimonial-quote {
+      color: $grey-400;
+    }
+  }
+
+  @include desktop {
+    gap: 3rem;
+    grid-template-columns: repeat(4, rem(250px));
+    grid-template-areas:
+      'daniel daniel jonathan kira'
+      'jeanette patrick patrick kira';
+
+    .daniel {
+      grid-area: daniel;
+    }
+
+    .jonathan {
+      grid-area: jonathan;
+    }
+
+    .jeanette {
+      grid-area: jeanette;
+    }
+
+    .patrick {
+      grid-area: patrick;
+    }
+
+    .kira {
+      grid-area: kira;
+    }
+  }
+}
